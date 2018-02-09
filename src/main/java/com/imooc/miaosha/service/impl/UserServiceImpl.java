@@ -1,12 +1,15 @@
 package com.imooc.miaosha.service.impl;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.imooc.miaosha.dao.UserDao;
-import com.imooc.miaosha.entity.User;
+import com.imooc.miaosha.domain.User;
 import com.imooc.miaosha.service.UserService;
+import com.imooc.miaosha.vo.LoginVo;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,6 +29,10 @@ public class UserServiceImpl implements UserService {
 		User u2 = new User(4,"user4");
 		userDao.insetUser(u2);
 		return true;
+	}
+	@Override
+	public void login(HttpServletResponse response, LoginVo loginVo) {
+		
 	}
 
 }

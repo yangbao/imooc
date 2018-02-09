@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.imooc.miaosha.domain.CodeMsg;
-import com.imooc.miaosha.domain.Contant;
-import com.imooc.miaosha.domain.ReturnResult;
-import com.imooc.miaosha.entity.User;
+import com.imooc.miaosha.result.CodeMsg;
+import com.imooc.miaosha.domain.User;
 import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.redis.UserKey;
+import com.imooc.miaosha.result.Contant;
+import com.imooc.miaosha.result.ReturnResult;
 import com.imooc.miaosha.service.UserService;
 
 @Controller
@@ -35,7 +35,7 @@ public class DemoController {
 	@RequestMapping("/returnError")
 	@ResponseBody
 	public ReturnResult<String> returnFilure() {
-		return ReturnResult.retrunFailure(new CodeMsg(Contant.SERVER_ERROR_CODE, "服务器错误。。。"));
+		return ReturnResult.retrunFailure(CodeMsg.SERVER_ERROR);
 	}
 	/**
 	 * @ResponseBody：该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。

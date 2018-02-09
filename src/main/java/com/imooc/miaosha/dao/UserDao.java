@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import com.imooc.miaosha.entity.User;
+import com.imooc.miaosha.domain.User;
 
 @Mapper
 public interface UserDao {

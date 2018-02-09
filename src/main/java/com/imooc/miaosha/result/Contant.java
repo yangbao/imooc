@@ -1,4 +1,4 @@
-package com.imooc.miaosha.domain;
+package com.imooc.miaosha.result;
 
 public class Contant {
 

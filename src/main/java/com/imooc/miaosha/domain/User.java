@@ -1,4 +1,4 @@
-package com.imooc.miaosha.entity;
+package com.imooc.miaosha.domain;
 
 public class User {
 
