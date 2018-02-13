@@ -34,7 +34,7 @@ public class MiaoshaUserService{
 		return miaoshaUserDao.getById(id);
 	}
 	
-
+	/*抽取出来*/
 	public MiaoshaUser getByToken(HttpServletResponse response, String token) {
 		if(StringUtils.isEmpty(token)) {
 			return null;
@@ -73,8 +73,10 @@ public class MiaoshaUserService{
 	}
 	
 	private void addCookie(HttpServletResponse response, String token, MiaoshaUser user) {
+		//第一次需要new新的token，后台直接用原来的
 		redisService.set(MiaoshaUserKey.token, token, user);
 		Cookie cookie = new Cookie(COOKI_NAME_TOKEN, token);
+		//需要重新设置一下有效期，因为失效针对最后一次登录而言的
 		cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
 		cookie.setPath("/");
 		response.addCookie(cookie);
