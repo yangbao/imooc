@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 /**
- * 自定义validator
+ * 自定义validator 注解
  * @author u6035457
  *
  */

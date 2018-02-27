@@ -44,9 +44,13 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 		String token = StringUtils.isEmpty(paramToken)?cookieToken:paramToken;
 		return userService.getByToken(response, token);
 	}
-
+	//可以放到localStorge吗?
 	private String getCookieValue(HttpServletRequest request, String cookiName) {
 		Cookie[]  cookies = request.getCookies();
+		
+		if(cookies == null || cookies.length <= 0){
+			return null;
+		}
 		for(Cookie cookie : cookies) {
 			if(cookie.getName().equals(cookiName)) {
 				return cookie.getValue();

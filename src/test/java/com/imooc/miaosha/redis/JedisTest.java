@@ -36,7 +36,10 @@ public class JedisTest {
 			jedis.close();
 		}
 	 }
-	
+	@Test
+	public void testDelete() {
+		
+	}
 	
 	
 	
