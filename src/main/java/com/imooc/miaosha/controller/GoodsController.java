@@ -60,7 +60,7 @@ public class GoodsController {
     @RequestMapping("/to_list")
     //用来做静态页面的缓存,返回的不再是template名字,而是html的字串, 需要去手动渲染
     @ResponseBody
-//    @AuthValidate
+    @AuthValidate
     public String list(Model model,MiaoshaUser user,
     		HttpServletRequest request, HttpServletResponse response // 这2个参数是手动渲染页面需要的
     		//做了优化，用自定义的参数处理器，详见config包
@@ -99,6 +99,7 @@ public class GoodsController {
     /*使用页面静态化来优化*/
     @RequestMapping("/detail/{goodsId}")
     @ResponseBody
+    @AuthValidate
     public Result<GoodsDetailVo> detail(Model model,MiaoshaUser user,
     		@PathVariable("goodsId")long goodsId,
     		HttpServletRequest request, HttpServletResponse response // 这2个参数是手动渲染页面需要的

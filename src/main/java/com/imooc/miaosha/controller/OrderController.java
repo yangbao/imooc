@@ -39,12 +39,12 @@ public class OrderController {
     @RequestMapping("/detail")
     @ResponseBody
     //每次都要判断user是否为空, 可以使用自定义拦截器- 代替注释了的
-//    @AuthValidate(AuthCode.AU0001)
+    @AuthValidate
     public Result<OrderDetailVo> info(Model model,MiaoshaUser user,
     		@RequestParam("orderId") long orderId) {
-    	if(user == null) {
-    		return Result.error(CodeMsg.SESSION_ERROR);
-    	}
+//    	if(user == null) {
+//    		return Result.error(CodeMsg.SESSION_ERROR);
+//    	}
     	OrderInfo order = orderService.getOrderById(orderId);
     	if(order == null) {
     		return Result.error(CodeMsg.ORDER_NOT_EXIST);
