@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.imooc.miaosha.dao.GoodsDao;
 import com.imooc.miaosha.domain.MiaoshaGoods;
+import com.imooc.miaosha.vo.GoodsStockVo;
 import com.imooc.miaosha.vo.GoodsVo;
 
 @Service
@@ -18,17 +19,27 @@ public class GoodsService {
 	public List<GoodsVo> listGoodsVo(){
 		return goodsDao.listGoodsVo();
 	}
-
+	public List<GoodsStockVo> listGoodsStockVo(){
+		return goodsDao.listGoodsStockVo();
+	}
 	public GoodsVo getGoodsVoByGoodsId(long goodsId) {
 		return goodsDao.getGoodsVoByGoodsId(goodsId);
 	}
 
-	public void reduceStock(GoodsVo goods) {
+	public boolean reduceStock(GoodsVo goods) {
 		MiaoshaGoods g = new MiaoshaGoods();
 		g.setGoodsId(goods.getId());
-		goodsDao.reduceStock(g);
+		int ret = goodsDao.reduceStock(g);
+		return ret > 0;
 	}
-	
+	public void resetStock(List<GoodsVo> goodsList) {
+		for(GoodsVo goods : goodsList ) {
+			MiaoshaGoods g = new MiaoshaGoods();
+			g.setGoodsId(goods.getId());
+			g.setStockCount(goods.getStockCount());
+			goodsDao.resetStock(g);
+		}
+	}
 	
 	
 }

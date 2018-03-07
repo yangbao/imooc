@@ -4,6 +4,11 @@ import java.util.Date;
 
 import com.imooc.miaosha.domain.Goods;
 
+/**
+ * 集成Goods, 可以得到其全部的信息
+ * @author U6035457
+ *
+ */
 public class GoodsVo extends Goods{
 	private Double miaoshaPrice;
 	private Integer stockCount;

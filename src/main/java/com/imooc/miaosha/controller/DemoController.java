@@ -6,21 +6,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.imooc.miaosha.result.CodeMsg;
 import com.imooc.miaosha.domain.User;
+import com.imooc.miaosha.rabbitmq.MQSender;
 import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.redis.UserKey;
-import com.imooc.miaosha.result.Contant;
+import com.imooc.miaosha.result.CodeMsg;
+import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.result.ReturnResult;
 import com.imooc.miaosha.service.UserService;
 
 @Controller
+@RequestMapping("/demo")
 public class DemoController {
 
 	@Autowired
 	UserService userService;
 	@Autowired
 	RedisService redisService;
+	@Autowired
+	MQSender sender;
 	
 	@RequestMapping("/")
     @ResponseBody
@@ -96,11 +100,34 @@ public class DemoController {
     	redisService.set(UserKey.getById, ""+1, user);//UserKey:id1
         return ReturnResult.success(true);
     }
+    /*测试rabbit MQ*/
+	/*@RequestMapping("/mq")
+	@ResponseBody
+	public Result<String> mq() {
+		sender.send("hello,imooc...");
+	return Result.success("Hello，world");
+	}
+	@RequestMapping("/mq/topic")
+   @ResponseBody
+   public Result<String> topic() {
+		sender.sendTopic("hello,imooc");
+      return Result.success("Hello，world");
+   }
 	
+	@RequestMapping("/mq/fanout")
+    @ResponseBody
+    public Result<String> fanout() {
+		sender.sendFanout("hello,imooc");
+        return Result.success("Hello，world");
+    }
 	
-	
-	
-	
+	@RequestMapping("/mq/header")
+    @ResponseBody
+    public Result<String> header() {
+		sender.sendHeader("only to key1");
+        return Result.success("Hello，world");
+    }	
+	*/
 	
 	
 }

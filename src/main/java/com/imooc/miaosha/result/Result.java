@@ -12,7 +12,12 @@ public class Result<T> {
 	public static  <T> Result<T> success(T data){
 		return new Result<T>(data);
 	}
-	
+	/**
+	 *  成功时候的调用
+	 * */
+	public static  <T> Result<T> success(int code){
+		return new Result<T>(code);
+	}
 	/**
 	 *  失败时候的调用
 	 * */
@@ -37,6 +42,9 @@ public class Result<T> {
 	}
 	
 	
+	private Result(int code) {
+		this.code = code;
+	}
 	public int getCode() {
 		return code;
 	}

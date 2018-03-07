@@ -3,14 +3,13 @@ package com.imooc.miaosha.config;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.imooc.miaosha.interceptor.UserLoginInterceptor;
+import com.imooc.miaosha.access.AccessInterceptor;
 
 //import com.imooc.miaosha.interceptor.UserLoginInterceptor;
 
@@ -25,18 +24,22 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
 	
 	@Autowired
 	UserArgumentResolver userArgumentResolver;
-	@Bean
-    public UserLoginInterceptor myInterceptor(){
-        return new UserLoginInterceptor();
-    }
+	
+	@Autowired
+	AccessInterceptor accessInterceptor;
+//	@Bean
+//    public UserLoginInterceptor myInterceptor(){
+//        return new UserLoginInterceptor();
+//    }
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 		argumentResolvers.add(userArgumentResolver);
 	}
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(myInterceptor()).addPathPatterns("/goods/**");
-		super.addInterceptors(registry);
+		registry.addInterceptor(accessInterceptor);
+//		registry.addInterceptor(myInterceptor()).addPathPatterns("/goods/**");
+//		super.addInterceptors(registry);
 //		this.excludeUserLogin(registry.addInterceptor(new UserLoginInterceptor()));
 	}
 	public void excludeUserLogin(InterceptorRegistration registration){
